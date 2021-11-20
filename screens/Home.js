@@ -7,6 +7,7 @@ import {
   Dimensions,
   SafeAreaView,
   FlatList,
+  Image,
 } from "react-native";
 import Menu from "../components/Menu";
 import Card from "../components/Card";
@@ -26,7 +27,24 @@ const options = [
 export default function Home() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <MapView style={styles.map} />
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 29.11065,
+          longitude: -111.03402,
+          latitudeDelta: 0.0088,
+          longitudeDelta: 0.0,
+        }}
+      >
+        <MapView.Marker
+          coordinate={{ latitude: 29.1106641, longitude: -111.034012 }}
+        >
+          <Image
+            source={{ uri: "https://i.ibb.co/J54Ym33/marker.png" }}
+            style={{ width: 43, height: 41 }}
+          />
+        </MapView.Marker>
+      </MapView>
       <Menu>
         <FlatList
           data={options}
@@ -39,7 +57,7 @@ export default function Home() {
           showsHorizontalScrollIndicator={false}
         />
         <View style={styles.form}>
-          <Text style={common.info}>Precio recomendado: $67MXN</Text>
+          <Text style={common.info}>Precio recomendado: $67 MXN</Text>
           <TextBox
             icon={"circle"}
             color={common.secondary.color}
@@ -77,6 +95,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffff",
     alignItems: "center",
     justifyContent: "center",
-    alignItems: "center",
   },
 });
